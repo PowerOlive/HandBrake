@@ -343,7 +343,7 @@ int encx265Init(hb_work_object_t *w, hb_job_t *job)
     }
 
     /*
-     * Settings which can't be overridden in the encodeer_options string
+     * Settings which can't be overridden in the encoder_options string
      * (muxer-specific settings, resolution, ratecontrol, etc.).
      */
     param->bRepeatHeaders = job->inline_parameter_sets;
@@ -351,7 +351,7 @@ int encx265Init(hb_work_object_t *w, hb_job_t *job)
     param->sourceHeight   = job->height;
 
     /*
-     * Let x265 determnine whether to use an aspect ratio
+     * Let x265 determine whether to use an aspect ratio
      * index vs. the extended SAR index + SAR width/height.
      */
     char sar[22];

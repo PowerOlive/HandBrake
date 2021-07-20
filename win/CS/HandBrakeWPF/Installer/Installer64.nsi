@@ -25,7 +25,9 @@ ManifestDPIAware true
 ; GPL is not an EULA, no need to agree to it.
 !define MUI_LICENSEPAGE_BUTTON $(^NextBtn)
 !define MUI_LICENSEPAGE_TEXT_BOTTOM "You are now aware of your rights. Click Next to continue."
+
 !define MUI_WELCOMEFINISHPAGE_BITMAP "InstallerBackground.bmp"
+!define MUI_TEXT_WELCOME_INFO_TEXT "Setup will guide you through the installation of HandBrake.$\r$\n$\r$\nIt is recommended you close any running instances of HandBrake before running setup.$\r$\n$\r$\nWARNING: Before updating, please make sure that there are no pending encodes in the Queue. Please make sure you have backed up any presets and made a note of your settings."
 
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_TEXT "Create desktop shortcut (all users)"
@@ -78,7 +80,7 @@ Function .onInit
   MessageBox MB_OK|MB_ICONEXCLAMATION "The installer is already running." /SD IDOK
   Abort
 
-  ; Detect if the intsaller is running on Windows XP/Vista and abort if it is.
+  ; Detect if the installer is running on Windows XP/Vista and abort if it is.
   ${IfNot} ${AtLeastWin7}
     MessageBox MB_OK "Windows 7 with Service Pack 1 or later is required in order to run HandBrake."
     Quit
@@ -120,60 +122,6 @@ Section "HandBrake" SectionApp
   File "*.exe"
   File "*.dll"
   File "*.template"
-  File "*.config"
-  File "*.pdb"
-  File "*.config"
-  File "*.deps.json"
-  File "*.runtimeconfig.json"
-
-  SetOutPath "$INSTDIR\runtimes\win\lib\netcoreapp2.0"
-  SetOverwrite ifnewer
-  File "runtimes\win\lib\netcoreapp2.0\*.*"
-
- ; Copy the languages
-  SetOutPath "$INSTDIR\de"
-  SetOverwrite ifnewer
-  File "de\*.*"
-
-  SetOutPath "$INSTDIR\zh"
-  SetOverwrite ifnewer
-  File "zh\*.*"
-
-  SetOutPath "$INSTDIR\es"
-  SetOverwrite ifnewer
-  File "es\*.*"
-
-  SetOutPath "$INSTDIR\fr"
-  SetOverwrite ifnewer
-  File "fr\*.*"
-
-  SetOutPath "$INSTDIR\ko"
-  SetOverwrite ifnewer
-  File "ko\*.*"
-
-  SetOutPath "$INSTDIR\ru"
-  SetOverwrite ifnewer
-  File "ru\*.*"
-
-  SetOutPath "$INSTDIR\tr"
-  SetOverwrite ifnewer
-  File "tr\*.*"
-
-  SetOutPath "$INSTDIR\ja"
-  SetOverwrite ifnewer
-  File "ja\*.*"
-
-  SetOutPath "$INSTDIR\pt-BR"
-  SetOverwrite ifnewer
-  File "pt-BR\*.*"
-
-  SetOutPath "$INSTDIR\co"
-  SetOverwrite ifnewer
-  File "co\*.*"
-
-  SetOutPath "$INSTDIR\uk"
-  SetOverwrite ifnewer
-  File "uk\*.*"
 
   ; Copy the standard doc set into the doc folder
   SetOutPath "$INSTDIR\doc"
@@ -220,34 +168,6 @@ Section Uninstall
   Delete "$INSTDIR\*.*"
   Delete "$INSTDIR\doc\*.*"
   RMDir  "$INSTDIR\doc"
-  Delete "$INSTDIR\de\*.*"
-  RMDir  "$INSTDIR\de"
-  Delete "$INSTDIR\zh\*.*"
-  RMDir  "$INSTDIR\zh"
-  Delete "$INSTDIR\es\*.*"
-  RMDir  "$INSTDIR\es"
-  Delete "$INSTDIR\fr\*.*"
-  RMDir  "$INSTDIR\fr"
-  Delete "$INSTDIR\ko\*.*"
-  RMDir  "$INSTDIR\ko"
-  Delete "$INSTDIR\ru\*.*"
-  RMDir  "$INSTDIR\ru"
-  Delete "$INSTDIR\tr\*.*"
-  RMDir  "$INSTDIR\tr"
-  Delete "$INSTDIR\ja\*.*"
-  RMDir  "$INSTDIR\ja"
-  Delete "$INSTDIR\pt-BR\*.*"
-  RMDir  "$INSTDIR\pt-BR"
-  Delete "$INSTDIR\co\*.*"
-  RMDir  "$INSTDIR\co"
-  Delete "$INSTDIR\uk\*.*"
-  RMDir  "$INSTDIR\uk"
-  
-  Delete "$INSTDIR\runtimes\win\lib\netcoreapp2.0\*.*"
-  RMDir  "$INSTDIR\runtimes\win\lib\netcoreapp2.0"
-  RMDir  "$INSTDIR\runtimes\win\lib"
-  RMDir  "$INSTDIR\runtimes\win"
-  RMDir  "$INSTDIR\runtimes"
 
   RMDir  "$INSTDIR"
 

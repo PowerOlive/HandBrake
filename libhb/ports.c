@@ -647,7 +647,7 @@ char * hb_get_temporary_directory()
     else
         base = strdup("/tmp");
 #endif
-    /* I prefer to remove evntual last '/' (for cygwin) */
+    /* I prefer to remove eventual last '/' (for cygwin) */
     if( base[strlen(base)-1] == '/' )
         base[strlen(base)-1] = '\0';
 
@@ -658,7 +658,7 @@ char * hb_get_temporary_directory()
 }
 
 /************************************************************************
- * Get a tempory filename for HB
+ * Get a temporary filename for HB
  ***********************************************************************/
 char * hb_get_temporary_filename( char *fmt, ... )
 {

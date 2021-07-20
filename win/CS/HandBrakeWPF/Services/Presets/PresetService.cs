@@ -12,12 +12,12 @@ namespace HandBrakeWPF.Services.Presets
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
+    using System.Runtime.InteropServices;
+    using System.Text.Json;
     using System.Windows;
-    using System.Windows.Xps.Serialization;
 
     using HandBrake.Interop.Interop;
     using HandBrake.Interop.Interop.Interfaces.Model;
@@ -35,15 +35,13 @@ namespace HandBrakeWPF.Services.Presets
     using HandBrakeWPF.Services.Presets.Model;
     using HandBrakeWPF.Utilities;
 
-    using Newtonsoft.Json;
-
     using GeneralApplicationException = Exceptions.GeneralApplicationException;
     using VideoEncoder = HandBrakeWPF.Model.Video.VideoEncoder;
 
     public class PresetService : IPresetService
     {
         public const int ForcePresetReset = 3;
-        public static string UserPresetCatgoryName = "Custom Presets";
+        public static string UserPresetCategoryName = "Custom Presets";
         private readonly string presetFile = Path.Combine(DirectoryUtilities.GetUserStoragePath(HandBrakeVersionHelper.IsNightly()), "presets.json");
         private readonly ObservableCollection<IPresetObject> presets = new ObservableCollection<IPresetObject>(); // Can store Presets and PresetDisplayCategory objects.
         private readonly Dictionary<string, Preset> flatPresetDict = new Dictionary<string, Preset>();
@@ -158,7 +156,7 @@ namespace HandBrakeWPF.Services.Presets
                     bool containsBuildInPreset = false;
                     foreach (var objectPreset in container.PresetList)
                     {
-                        HBPresetCategory category = JsonConvert.DeserializeObject<HBPresetCategory>(objectPreset.ToString());
+                        HBPresetCategory category = JsonSerializer.Deserialize<HBPresetCategory>(objectPreset.ToString(), JsonSettings.Options);
                         if (category != null && category.ChildrenArray != null && category.ChildrenArray.Count > 0)
                         {
                             foreach (HBPreset hbPreset in category.ChildrenArray)
@@ -178,7 +176,7 @@ namespace HandBrakeWPF.Services.Presets
                         }
                         else
                         {
-                            HBPreset hbPreset = JsonConvert.DeserializeObject<HBPreset>(objectPreset.ToString());
+                            HBPreset hbPreset = JsonSerializer.Deserialize<HBPreset>(objectPreset.ToString(), JsonSettings.Options);
                             if (hbPreset != null)
                             {
                                 Preset preset = this.ConvertHbPreset(hbPreset, null);
@@ -249,16 +247,16 @@ namespace HandBrakeWPF.Services.Presets
                 return false;
             }
 
-            PresetDisplayCategory cateogry = this.presets.FirstOrDefault(p => p.Category == preset.Category) as PresetDisplayCategory;
-            if (cateogry != null)
+            PresetDisplayCategory category = this.presets.FirstOrDefault(p => p.Category == preset.Category) as PresetDisplayCategory;
+            if (category != null)
             {
                 // Remove the preset, and cleanup the category if it's not got any presets in it.
-                cateogry.Presets.Remove(preset);
+                category.Presets.Remove(preset);
                 this.flatPresetList.Remove(preset);
                 this.flatPresetDict.Remove(preset.Name);
-                if (cateogry.Presets.Count == 0)
+                if (category.Presets.Count == 0)
                 {
-                    this.presets.Remove(cateogry);
+                    this.presets.Remove(category);
                 }
             }
             else
@@ -434,7 +432,6 @@ namespace HandBrakeWPF.Services.Presets
                     Preset preset = JsonPresetFactory.ImportPreset(hbpreset);
                     preset.IsBuildIn = true;
                     preset.Category = category.PresetName;
-                    preset.Task.AllowedPassthruOptions = new AllowedPassthru(true); // We don't want to override the built-in preset
                     preset.IsPresetDisabled = this.IsPresetDisabled(preset) || hbpreset.PresetDisabled;
 
                     if (hbpreset.Default && hasUserDefault)
@@ -509,7 +506,7 @@ namespace HandBrakeWPF.Services.Presets
 
         public void SaveCategoryStates()
         {
-            StringCollection expandedPresets = new StringCollection();
+            List<string> expandedPresets = new List<string>();
             foreach (IPresetObject presetObject in this.presets)
             {
                 PresetDisplayCategory category = presetObject as PresetDisplayCategory;
@@ -524,7 +521,7 @@ namespace HandBrakeWPF.Services.Presets
 
         public void LoadCategoryStates()
         {
-            StringCollection expandedPresets = this.userSettingService.GetUserSetting<StringCollection>(UserSettingConstants.PresetExpandedStateList);
+            List<string> expandedPresets = this.userSettingService.GetUserSetting<List<string>>(UserSettingConstants.PresetExpandedStateList);
             if (expandedPresets == null || expandedPresets.Count == 0)
             {
                 return;
@@ -627,7 +624,7 @@ namespace HandBrakeWPF.Services.Presets
                     this.ServiceLogMessage("Corrupted Presets File Detected: " + Environment.NewLine + exc);
                 }
 
-                // Sanity Check. Did the container deserialise.
+                // Sanity Check. Did the container deserialize.
                 if (container?.PresetList == null)
                 {
                     this.ServiceLogMessage("Attempting Preset Recovery ...");
@@ -680,10 +677,10 @@ namespace HandBrakeWPF.Services.Presets
             // The presets file loaded was OK, so process it.
             foreach (var item in container.PresetList)
             {
-                object deserialisedItem = JsonConvert.DeserializeObject<HBPresetCategory>(item.ToString());
+                object deserializedItem = JsonSerializer.Deserialize<HBPresetCategory>(item.ToString(), JsonSettings.Options);
 
                 // Handle Categorised Presets.
-                HBPresetCategory category = deserialisedItem as HBPresetCategory;
+                HBPresetCategory category = deserializedItem as HBPresetCategory;
                 if (category != null && category.Folder)
                 {
                     foreach (HBPreset hbpreset in category.ChildrenArray)
@@ -691,7 +688,7 @@ namespace HandBrakeWPF.Services.Presets
                         Preset preset = JsonPresetFactory.ImportPreset(hbpreset);
 
                         // Migration
-                        preset.Category = category.PresetName == "User Presets" ? UserPresetCatgoryName : category.PresetName;
+                        preset.Category = category.PresetName == "User Presets" ? UserPresetCategoryName : category.PresetName;
                         preset.IsBuildIn = hbpreset.Type == 0;
                         preset.IsPresetDisabled = this.IsPresetDisabled(preset);
 
@@ -700,12 +697,12 @@ namespace HandBrakeWPF.Services.Presets
                 }
 
                 // Uncategorised Presets
-                deserialisedItem = JsonConvert.DeserializeObject<HBPreset>(item.ToString());
-                HBPreset hbPreset = deserialisedItem as HBPreset;
+                deserializedItem = JsonSerializer.Deserialize<HBPreset>(item.ToString(), JsonSettings.Options);
+                HBPreset hbPreset = deserializedItem as HBPreset;
                 if (hbPreset != null && !hbPreset.Folder)
                 {
                     Preset preset = JsonPresetFactory.ImportPreset(hbPreset);
-                    preset.Category = UserPresetCatgoryName;
+                    preset.Category = UserPresetCategoryName;
                     preset.IsBuildIn = hbPreset.Type == 0;
                     preset.IsPresetDisabled = this.IsPresetDisabled(preset);
 
@@ -736,8 +733,6 @@ namespace HandBrakeWPF.Services.Presets
                 this.HandlePresetListsForSave(this.flatPresetList.Where(o => o.IsBuildIn).ToList(), presetCategories, uncategorisedPresets);
 
                 // Wrap the categories in a container. 
-                JsonSerializerSettings settings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Ignore };
-
                 PresetVersion presetVersion = HandBrakePresetService.GetCurrentPresetVersion();
                 PresetTransportContainer container = new PresetTransportContainer(presetVersion.Major, presetVersion.Minor, presetVersion.Micro) { PresetList = new List<object>() };
                 container.PresetList.AddRange(presetCategories.Values);
@@ -746,7 +741,7 @@ namespace HandBrakeWPF.Services.Presets
                 // Write the preset container out to file.
                 using (FileStream strm = new FileStream(this.presetFile, FileMode.Create, FileAccess.Write))
                 {
-                    string presetsJson = JsonConvert.SerializeObject(container, Formatting.Indented, settings);
+                    string presetsJson = JsonSerializer.Serialize(container, JsonSettings.Options);
                     using (StreamWriter writer = new StreamWriter(strm))
                     {
                         writer.WriteLine(presetsJson);
@@ -798,7 +793,7 @@ namespace HandBrakeWPF.Services.Presets
         private Preset ConvertHbPreset(HBPreset hbPreset, string categoryName)
         {
             Preset preset = JsonPresetFactory.ImportPreset(hbPreset);
-            preset.Category = !string.IsNullOrEmpty(categoryName) ? categoryName : UserPresetCatgoryName;
+            preset.Category = !string.IsNullOrEmpty(categoryName) ? categoryName : UserPresetCategoryName;
 
             return preset;
         }
@@ -833,11 +828,6 @@ namespace HandBrakeWPF.Services.Presets
 
         private bool IsPresetDisabled(Preset preset)
         {
-            if (preset.Task.VideoEncoder == VideoEncoder.QuickSyncH265)
-            {
-                Console.Write("tets");
-            }
-
             bool isQsvEnabled = this.userSettingService.GetUserSetting<bool>(UserSettingConstants.EnableQuickSyncEncoding);
             bool isNvencEnabled = this.userSettingService.GetUserSetting<bool>(UserSettingConstants.EnableNvencEncoder);
             bool isVcnEnabled = this.userSettingService.GetUserSetting<bool>(UserSettingConstants.EnableVceEncoder);
@@ -876,7 +866,15 @@ namespace HandBrakeWPF.Services.Presets
             {
                 return true;
             }
-            
+
+            if (preset.Task.VideoEncoder == VideoEncoder.MFH264 || preset.Task.VideoEncoder == VideoEncoder.MFH265)
+            {
+                if (RuntimeInformation.ProcessArchitecture != Architecture.Arm64)
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 

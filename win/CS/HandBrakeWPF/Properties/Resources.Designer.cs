@@ -917,7 +917,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If the problem presists, please try restarting HandBrake..
+        ///   Looks up a localized string similar to If the problem persists, please try restarting HandBrake..
         /// </summary>
         public static string ErrorViewModel_IfTheProblemPersists {
             get {
@@ -998,7 +998,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deblock.
+        ///   Looks up a localized string similar to Deblock:.
         /// </summary>
         public static string FiltersView_Deblock {
             get {
@@ -1088,7 +1088,16 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Flip.
+        ///   Looks up a localized string similar to Flip:.
+        /// </summary>
+        public static string FiltersView_Flip {
+            get {
+                return ResourceManager.GetString("FiltersView_Flip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal.
         /// </summary>
         public static string FiltersView_FlipVideo {
             get {
@@ -1124,7 +1133,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rotate:.
+        ///   Looks up a localized string similar to Rotation:.
         /// </summary>
         public static string FiltersView_Rotate {
             get {
@@ -1133,7 +1142,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Sharpen.
+        ///   Looks up a localized string similar to Sharpen:.
         /// </summary>
         public static string FiltersView_Sharpen {
             get {
@@ -1183,6 +1192,26 @@ namespace HandBrakeWPF.Properties {
         public static string FiltersViewAuto_DeblockTune {
             get {
                 return ResourceManager.GetString("FiltersViewAuto_DeblockTune", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to allow HandBrake to automatically check for updates?
+        ///
+        ///You can change your choice at any time by changing the options in Preferences -&gt; General -&gt; Check for Updates.
+        /// </summary>
+        public static string FirstRun_EnableUpdateCheck {
+            get {
+                return ResourceManager.GetString("FirstRun_EnableUpdateCheck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check for updates?.
+        /// </summary>
+        public static string FirstRun_EnableUpdateCheckHeader {
+            get {
+                return ResourceManager.GetString("FirstRun_EnableUpdateCheckHeader", resourceCulture);
             }
         }
         
@@ -1518,9 +1547,9 @@ namespace HandBrakeWPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you wish to update the selected preset?.
         /// </summary>
-        public static string Main_PresetUpdateConfrimation {
+        public static string Main_PresetUpdateConfirmation {
             get {
-                return ResourceManager.GetString("Main_PresetUpdateConfrimation", resourceCulture);
+                return ResourceManager.GetString("Main_PresetUpdateConfirmation", resourceCulture);
             }
         }
         
@@ -1618,20 +1647,20 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scan Failed... Please See Activity Log for details..
+        /// </summary>
+        public static string Main_ScanFailed_CheckLog {
+            get {
+                return ResourceManager.GetString("Main_ScanFailed_CheckLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Scan failed: .
         /// </summary>
         public static string Main_ScanFailed_NoReason {
             get {
                 return ResourceManager.GetString("Main_ScanFailed_NoReason", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Scan Failed... Please See Activity Log for details..
-        /// </summary>
-        public static string Main_ScanFailled_CheckLog {
-            get {
-                return ResourceManager.GetString("Main_ScanFailled_CheckLog", resourceCulture);
             }
         }
         
@@ -2558,6 +2587,18 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error was detected in the File Browser Dialog. 
+        ///
+        ///- Please note, long file paths are not fully supported. Please keep file paths shorter than 255 characters. 
+        ///- The last used directory for this window, has been reset to prevent errors the next time you try to scan a file..
+        /// </summary>
+        public static string MainViewModel_FilePathSelectError {
+            get {
+                return ResourceManager.GetString("MainViewModel_FilePathSelectError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Low Disk Space.
         /// </summary>
         public static string MainViewModel_LowDiskSpace {
@@ -2819,6 +2860,21 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please be aware that HandBrake is no longer supported on any version of Windows 7 or Windows 8.
+        ///
+        ///While you can continue using the application at your own risk, please be aware that certain features are non-functional and there may be other unknown issues. There is no support available when these issues occur. 
+        ///
+        ///Support for Windows 7 and 8 was deprecated in the 1.3 series. This means there will be no further updates to correct issues on these platforms. 
+        ///
+        ///This warning will display only twice..
+        /// </summary>
+        public static string OldOperatingSystem {
+            get {
+                return ResourceManager.GetString("OldOperatingSystem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear Log files older than 7 days.
         /// </summary>
         public static string Options_7DayLogClear {
@@ -2869,9 +2925,9 @@ namespace HandBrakeWPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Application Toolbar.
         /// </summary>
-        public static string Options_ApplicaitonToolbar {
+        public static string Options_ApplicationToolbar {
             get {
-                return ResourceManager.GetString("Options_ApplicaitonToolbar", resourceCulture);
+                return ResourceManager.GetString("Options_ApplicationToolbar", resourceCulture);
             }
         }
         
@@ -3119,15 +3175,6 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Metadata.
-        /// </summary>
-        public static string Options_Metadata {
-            get {
-                return ResourceManager.GetString("Options_Metadata", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Minimize to system tray (Requires Restart).
         /// </summary>
         public static string Options_MinimiseTray {
@@ -3187,35 +3234,6 @@ namespace HandBrakeWPF.Properties {
         public static string Options_OutputFiles {
             get {
                 return ResourceManager.GetString("Options_OutputFiles", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Passthru basic metadata from the source to the destination file (where supported).
-        /// </summary>
-        public static string Options_PassthruMetadata {
-            get {
-                return ResourceManager.GetString("Options_PassthruMetadata", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This option will allow basic metadata fields to be passed through from the source to destination file.
-        ///Fields are limited to:
-        ///- Name
-        ///- Artist
-        ///- Album Artist
-        ///- Composer
-        ///- Release Date
-        ///- Comment
-        ///- Album
-        ///- Genre
-        ///- Description
-        ///- Long Description.
-        /// </summary>
-        public static string Options_PassthruMetadataTooltip {
-            get {
-                return ResourceManager.GetString("Options_PassthruMetadataTooltip", resourceCulture);
             }
         }
         
@@ -3617,7 +3635,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Run each queued job in a separate worker process. (Experimental).
+        ///   Looks up a localized string similar to Run each queued job in a separate worker process..
         /// </summary>
         public static string OptionsView_EnableWorkerProcesses {
             get {
@@ -3654,7 +3672,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hardware encoding support is currently disabled. Please make sure you are running up-to-date drivers for all graphics adaptors in this system.
+        ///   Looks up a localized string similar to Hardware encoding support is currently disabled. If you did not start HandBrake with the &quot;--no-hardware&quot; option, please make sure you are running up-to-date drivers for all graphics adaptors in this system.
         ///
         ///This will not impact any of the software encoders..
         /// </summary>
@@ -3809,6 +3827,15 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Warning: Please note that this is a &quot;Safe Mode&quot; build of HandBrake that does not include support for hardware encoders. If you wish to use hardware encoder support, please download a non-&quot;Safe Mode&quot; build from the website..
+        /// </summary>
+        public static string OptionsView_SafeMode {
+            get {
+                return ResourceManager.GetString("OptionsView_SafeMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please select a folder..
         /// </summary>
         public static string OptionsView_SelectFolder {
@@ -3909,6 +3936,15 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The default auto name path was not valid. {0} must not be before {1}.
+        /// </summary>
+        public static string OptionsViewModel_InvalidAutonamePath {
+            get {
+                return ResourceManager.GetString("OptionsViewModel_InvalidAutonamePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A New Update is Available! Please check the website for release notes..
         /// </summary>
         public static string OptionsViewModel_NewUpdate {
@@ -3999,6 +4035,33 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Black.
+        /// </summary>
+        public static string PadColour_Black {
+            get {
+                return ResourceManager.GetString("PadColour_Black", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom.
+        /// </summary>
+        public static string PadColour_Custom {
+            get {
+                return ResourceManager.GetString("PadColour_Custom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White.
+        /// </summary>
+        public static string PadColour_White {
+            get {
+                return ResourceManager.GetString("PadColour_White", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Custom (Not Limited).
         /// </summary>
         public static string PaddingMode_Custom {
@@ -4008,7 +4071,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fill (pad to resolution limit).
+        ///   Looks up a localized string similar to Fill (Surround).
         /// </summary>
         public static string PaddingMode_Fill {
             get {
@@ -4017,7 +4080,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Height (pad up to res limit).
+        ///   Looks up a localized string similar to Height (Pillarbox).
         /// </summary>
         public static string PaddingMode_Height {
             get {
@@ -4035,7 +4098,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Width (pad up to res limit).
+        ///   Looks up a localized string similar to Width (Letterbox).
         /// </summary>
         public static string PaddingMode_Width {
             get {
@@ -4152,7 +4215,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Borders.
+        ///   Looks up a localized string similar to Borders:.
         /// </summary>
         public static string PictureSettingsView_Borders {
             get {
@@ -4188,11 +4251,11 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display Width:.
+        ///   Looks up a localized string similar to Display Size:.
         /// </summary>
-        public static string PictureSettingsView_DisplayWitdh {
+        public static string PictureSettingsView_DisplayWidth {
             get {
-                return ResourceManager.GetString("PictureSettingsView_DisplayWitdh", resourceCulture);
+                return ResourceManager.GetString("PictureSettingsView_DisplayWidth", resourceCulture);
             }
         }
         
@@ -4206,7 +4269,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Keep Aspect Ratio.
+        ///   Looks up a localized string similar to Automatic.
         /// </summary>
         public static string PictureSettingsView_KeepAR {
             get {
@@ -4233,6 +4296,15 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum Size:.
+        /// </summary>
+        public static string PictureSettingsView_MaxSize {
+            get {
+                return ResourceManager.GetString("PictureSettingsView_MaxSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Width:.
         /// </summary>
         public static string PictureSettingsView_MaxWidth {
@@ -4242,16 +4314,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Modulus:.
-        /// </summary>
-        public static string PictureSettingsView_Modulus {
-            get {
-                return ResourceManager.GetString("PictureSettingsView_Modulus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Output.
+        ///   Looks up a localized string similar to Final Dimensions:.
         /// </summary>
         public static string PictureSettingsView_Output {
             get {
@@ -4260,7 +4323,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Padding:.
+        ///   Looks up a localized string similar to Fill:.
         /// </summary>
         public static string PictureSettingsView_Padding {
             get {
@@ -4269,7 +4332,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Padding Colour:.
+        ///   Looks up a localized string similar to Colour:.
         /// </summary>
         public static string PictureSettingsView_PaddingColour {
             get {
@@ -4278,7 +4341,16 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PAR:.
+        ///   Looks up a localized string similar to RGB Value:.
+        /// </summary>
+        public static string PictureSettingsView_PaddingCustomColour {
+            get {
+                return ResourceManager.GetString("PictureSettingsView_PaddingCustomColour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pixel Aspect:.
         /// </summary>
         public static string PictureSettingsView_PAR {
             get {
@@ -4287,7 +4359,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Resolution and Scaling.
+        ///   Looks up a localized string similar to Resolution and Scaling:.
         /// </summary>
         public static string PictureSettingsView_ResAndScaling {
             get {
@@ -4314,11 +4386,20 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rotate and Crop.
+        ///   Looks up a localized string similar to Orientation and Cropping:.
         /// </summary>
         public static string PictureSettingsView_RotateAndCrop {
             get {
                 return ResourceManager.GetString("PictureSettingsView_RotateAndCrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Preview.
+        /// </summary>
+        public static string PictureSettingsView_SeePreview {
+            get {
+                return ResourceManager.GetString("PictureSettingsView_SeePreview", resourceCulture);
             }
         }
         
@@ -4332,11 +4413,11 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Source:.
+        ///   Looks up a localized string similar to Source Dimensions:.
         /// </summary>
-        public static string PictureSettingsView_Source {
+        public static string PictureSettingsView_SourceDimensions {
             get {
-                return ResourceManager.GetString("PictureSettingsView_Source", resourceCulture);
+                return ResourceManager.GetString("PictureSettingsView_SourceDimensions", resourceCulture);
             }
         }
         
@@ -4350,7 +4431,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Width:.
+        ///   Looks up a localized string similar to Scaled Size:.
         /// </summary>
         public static string PictureSettingsView_Width {
             get {
@@ -4359,7 +4440,25 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Display Size: {0}x{1},  PAR {2}x{3}.
+        ///   Looks up a localized string similar to Aspect Ratio: {0}.
+        /// </summary>
+        public static string PictureSettingsViewModel_AspectRatioLabel {
+            get {
+                return ResourceManager.GetString("PictureSettingsViewModel_AspectRatioLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage Size: {0}x{1}     Display Size: {2}x{3}      Aspect Ratio: {4}.
+        /// </summary>
+        public static string PictureSettingsViewModel_SourceInfo {
+            get {
+                return ResourceManager.GetString("PictureSettingsViewModel_SourceInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage Size: {0}x{1}.
         /// </summary>
         public static string PictureSettingsViewModel_StorageDisplayLabel {
             get {
@@ -4898,7 +4997,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Advanced:.
+        ///   Looks up a localized string similar to Video Options:.
         /// </summary>
         public static string QueueView_Advanced {
             get {
@@ -5065,6 +5164,87 @@ namespace HandBrakeWPF.Properties {
         public static string QueueView_JobInformationNotAvailable {
             get {
                 return ResourceManager.GetString("QueueView_JobInformationNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Job Status:.
+        /// </summary>
+        public static string QueueView_JobStatus {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled.
+        /// </summary>
+        public static string QueueView_JobStatus_Cancelled {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_Cancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string QueueView_JobStatus_Complete {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_Complete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Settings. Check log for details..
+        /// </summary>
+        public static string QueueView_JobStatus_InitFailed {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_InitFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Input. Check log for details..
+        /// </summary>
+        public static string QueueView_JobStatus_InvalidInput {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_InvalidInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status Unknown. Check log for details..
+        /// </summary>
+        public static string QueueView_JobStatus_NoErrorCode {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_NoErrorCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Errors detected whist trying to read source..
+        /// </summary>
+        public static string QueueView_JobStatus_ReadError {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_ReadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown failure. Check log for details..
+        /// </summary>
+        public static string QueueView_JobStatus_Unknown {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Worker Crashed. Check log for details..
+        /// </summary>
+        public static string QueueView_JobStatus_WorkerCrash {
+            get {
+                return ResourceManager.GetString("QueueView_JobStatus_WorkerCrash", resourceCulture);
             }
         }
         
@@ -5278,9 +5458,9 @@ namespace HandBrakeWPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you wish to clear the queue?.
         /// </summary>
-        public static string QueueViewModel_ClearQueueConfrimation {
+        public static string QueueViewModel_ClearQueueConfirmation {
             get {
-                return ResourceManager.GetString("QueueViewModel_ClearQueueConfrimation", resourceCulture);
+                return ResourceManager.GetString("QueueViewModel_ClearQueueConfirmation", resourceCulture);
             }
         }
         
@@ -5296,9 +5476,9 @@ namespace HandBrakeWPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you wish to edit this job? It will be removed from the queue and sent to the main window..
         /// </summary>
-        public static string QueueViewModel_EditConfrimation {
+        public static string QueueViewModel_EditConfirmation {
             get {
-                return ResourceManager.GetString("QueueViewModel_EditConfrimation", resourceCulture);
+                return ResourceManager.GetString("QueueViewModel_EditConfirmation", resourceCulture);
             }
         }
         
@@ -5484,7 +5664,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add Track.
+        ///   Looks up a localized string similar to Tracks.
         /// </summary>
         public static string Shared_AddTrack {
             get {
@@ -5513,9 +5693,9 @@ namespace HandBrakeWPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Selected Languages:.
         /// </summary>
-        public static string Shared_ChosenLangages {
+        public static string Shared_ChosenLanguages {
             get {
-                return ResourceManager.GetString("Shared_ChosenLangages", resourceCulture);
+                return ResourceManager.GetString("Shared_ChosenLanguages", resourceCulture);
             }
         }
         
@@ -5701,6 +5881,15 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing file &quot;hb.dll&quot;. Please re-install..
+        /// </summary>
+        public static string Startup_HbDllMissing {
+            get {
+                return ResourceManager.GetString("Startup_HbDllMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HandBrake&apos;s engine failed to initialise. This is often caused by out of date GPU drivers.\n  Please update the GPU drivers for any onboard and discrete graphics your system has..
         /// </summary>
         public static string Startup_InitFailed {
@@ -5760,15 +5949,6 @@ namespace HandBrakeWPF.Properties {
         public static string StaticPreviewView_LivePreview {
             get {
                 return ResourceManager.GetString("StaticPreviewView_LivePreview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preview Rotation and Flip.
-        /// </summary>
-        public static string StaticPreviewView_PreviewRotationFlip {
-            get {
-                return ResourceManager.GetString("StaticPreviewView_PreviewRotationFlip", resourceCulture);
             }
         }
         
@@ -6212,6 +6392,15 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Passthru Common Metadata.
+        /// </summary>
+        public static string SummaryView_MetadataPassthru {
+            get {
+                return ResourceManager.GetString("SummaryView_MetadataPassthru", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No Audio Tracks.
         /// </summary>
         public static string SummaryView_NoAudioTracks {
@@ -6266,6 +6455,15 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to (padded).
+        /// </summary>
+        public static string SummaryView_Padded {
+            get {
+                return ResourceManager.GetString("SummaryView_Padded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Preview {0} of {1}.
         /// </summary>
         public static string SummaryView_PreviewInfo {
@@ -6289,6 +6487,15 @@ namespace HandBrakeWPF.Properties {
         public static string SummaryView_SameAsSource {
             get {
                 return ResourceManager.GetString("SummaryView_SameAsSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source Preview:.
+        /// </summary>
+        public static string SummaryView_SourcePreview {
+            get {
+                return ResourceManager.GetString("SummaryView_SourcePreview", resourceCulture);
             }
         }
         
@@ -6395,9 +6602,9 @@ namespace HandBrakeWPF.Properties {
         /// <summary>
         ///   Looks up a localized string similar to A problem occurred when trying to save your preferences..
         /// </summary>
-        public static string UserSettings_AnErrorOccured {
+        public static string UserSettings_AnErrorOccurred {
             get {
-                return ResourceManager.GetString("UserSettings_AnErrorOccured", resourceCulture);
+                return ResourceManager.GetString("UserSettings_AnErrorOccurred", resourceCulture);
             }
         }
         
@@ -6536,7 +6743,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video Codec:.
+        ///   Looks up a localized string similar to Video Encoder:.
         /// </summary>
         public static string VideoView_Codec {
             get {
@@ -6626,7 +6833,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Optimise Video:.
+        ///   Looks up a localized string similar to Encoder Options: .
         /// </summary>
         public static string VideoView_OptimiseVideo {
             get {
@@ -6644,7 +6851,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quality.
+        ///   Looks up a localized string similar to Quality: .
         /// </summary>
         public static string VideoView_Quality {
             get {
@@ -6671,7 +6878,7 @@ namespace HandBrakeWPF.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Video.
+        ///   Looks up a localized string similar to Video: .
         /// </summary>
         public static string VideoView_Video {
             get {
